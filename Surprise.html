@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #911f1f;
+        }
+        #container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('val.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            height: auto;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+        button {
+            padding: 5px 15px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            position: relative;
+        }
+        #noBtn {
+            transition: 0.2s;
+        }
+        img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Will You Be My Valentine? ❤️</h1>
+        <div class="button-container">
+            <button id="yesBtn" onclick="sayYes()">Yes</button>
+            <button id="noBtn" onclick="sayNo()">No</button>
+        </div>
+    </div>
+    
+    <script>
+        let noClickCount = 0;
+        let moveMode = false;
+        
+        function sayYes() {
+            alert("Of course! I knew it! ❤️🥰");
+        }
+        
+        function sayNo() {
+            noClickCount++;
+            
+            if (noClickCount === 1) {
+                alert("Are you sure? 🥺");
+            } else if (noClickCount === 2) {
+                alert("Seriously?? I see how it is....😢 THINK AGAIN.....");
+            } else {
+                moveMode = true;
+            }
+        }
+        
+        document.getElementById("noBtn").addEventListener("mouseover", function(event) {
+            if (moveMode) {
+                let container = document.getElementById("container");
+                let rect = container.getBoundingClientRect();
+                let x = Math.random() * (rect.width - 50);
+                let y = Math.random() * (rect.height - 50);
+                event.target.style.position = "absolute";
+                event.target.style.left = x + "px";
+                event.target.style.top = y + "px";
+            }
+        });
+    </script>
+</body>
+</html>
